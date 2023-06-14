@@ -1,0 +1,117 @@
+    <!------------------------------Header-Nav---------------------------------------------------------->
+
+<header class="header" id="main_header, body" *ngFor="let product of products">
+    <div class="header_container">
+      <div class="header__inner">
+        <div class="title">Application</div>
+        <nav class="nav">
+          <a class="a__links" href="#page1">Products</a>
+          <a class="a__links, modal-btn" href="#" id="AddProductModal" (click)="onOpenModal(test, 'add')">AddProduct</a> 
+          <a class="a__links" href="#">Login</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+    <div class="intro" id="body">
+      <div class="intro_container">
+        <div class="intro__inner">
+          <h2 class="intro__suptitle">Our Game Future</h2>
+          <h1 class="intro__title">WELCOME To A New StorY</h1>
+            <div class="box1">
+              <a class="section1" href="#page1">Products</a>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-------------------------------------------Main-Container----------------------------------------------------->
+    <div class="main_cont" id="body">
+        <div id="page1" class="products_container" *ngFor="let product of products">
+            <div class="container">
+                <div class="wrapper">
+                    <div class="banner-image"></div>
+                            <h1>{{product.product_name}}</h1>
+                            <p>{{product.product_specification}}</p>
+                    </div>
+                <div class="button-wrapper"> 
+                    <button id="edit"  class="btn outline" (click)="onOpenModal(product, 'edit')" (click)="getId(product.product_id)">Edit</button>
+                    <button (click)="onDeleteProduct(product.product_id)" id="delete" class="btn outline">Delete</button>
+                    <button class="btn fill">{{product.product_price}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------------AddForm-------------------------------------------------------->
+
+    <div id="addProductForm" class="addFormCont">
+      <form class="form_cont" #addForm="ngForm" (ngSubmit)="onAddProduct(addForm)">
+        <h1 class="form_h" style="text-align: center;">Add Product</h1>
+        <div class="form_group">
+          <label for="product_name">Product Name</label>
+          <input type="text" class="form_control" id="product_name" name="product_name" ngModel placeholder="Product Name" required>
+        </div>
+        <div class="form_group">
+          <label for="product_specification">Product Specification</label>
+          <input type="text" class="form_control" id="product_specification" name="product_specification" ngModel placeholder="Product Specification" required>
+        </div>
+        <div class="form_group">
+          <label for="product_price">Product Price</label>
+          <input type="text" class="form_control" id="product_price" name="product_price" ngModel placeholder="Product Price" required>
+        </div>
+        <div class="form_group">
+          <label for="product_quantity">Product Quantity</label>
+          <input type="text" class="form_control" id="product_quantity" name="product_quantity" ngModel placeholder="Product Quantity" required>
+        </div>
+        <button [disabled]="addForm.invalid" type="submit" class="savebtn" id="savebtn">Save</button>
+      </form>
+      <button style="cursor: pointer;" id="close" (click)="onOpenModal(test, 'close')">Close</button>
+    </div>
+
+    <!----------------------------------------Updating-------------------------------------------------------------->
+
+    <div id="updateProductForm" class="addFormCont" *ngFor="let product of products">
+      <form class="form_cont" #updateForm="ngForm">
+        <h1 class="form_h" style="text-align: center;">Edit Product</h1>
+        <div class="form_group">
+          <label for="product_name">Product Name</label>
+          <input type="text" class="form_control" id="product_name" name="product_name" ngModel placeholder="Product Name" required>
+        </div>
+        <div class="form_group">
+          <label for="product_specification">Product Specification</label>
+          <input type="text" class="form_control" id="product_specification" name="product_specification" ngModel placeholder="Product Specification" required>
+        </div>
+        <div class="form_group">
+          <label for="product_price">Product Price</label>
+          <input type="text" class="form_control" id="product_price" name="product_price" ngModel placeholder="Product Price" required>
+        </div>
+        <div class="form_group">
+          <label for="product_quantity">Product Quantity</label>
+          <input type="text" class="form_control" id="product_quantity" name="product_quantity" ngModel placeholder="Product Quantity" required>
+        </div>
+        <button (click)="updateProducts(updateForm)" class="savebtn" id="savebtn">Save changes</button>
+      </form>
+      <button style="cursor: pointer;" id="close" (click)="onOpenModal(test, 'close')">Close</button>
+    </div>
+
+    <!---------------------------------------Footer--------------------------------------------------------->
+    <footer class="site-footer" id="body">
+        <div class="container_footer">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo amet, quia porro beatae recusandae cumque blanditiis ratione harum pariatur cupiditate soluta nam earum ducimus veniam ipsam placeat, nulla consectetur ipsum aspernatur, tempora quibusdam. Delectus, voluptates. Laudantium fuga assumenda repellat dolorem, sed quisquam quam sapiente ratione repellendus provident deserunt recusandae ab.</p>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="container_footer">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
+           <a id="test" href="https://www.linkedin.com/in/cre%C8%99ciuc-maxim-183a77249/">K. Max</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+  </footer>
