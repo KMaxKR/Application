@@ -433,7 +433,7 @@ h1, h2, h3, h4, h5, h6{
   }
 
   /*******/
-  .addFormCont{
+  .addFormCont, .details{
 	position: fixed;
 	width: 100%;
 	height: 100vh;
@@ -445,7 +445,20 @@ h1, h2, h3, h4, h5, h6{
 	visibility: hidden;
 	opacity: 0;
 	transition: 0.7s;
-  }
+}
+.details{
+	width: 90%;
+	height: 80vh;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50%);
+	border-radius: 13px;
+	background: linear-gradient(to left top, rgb(20, 56, 92, 0.4), #941dcc);
+}
+.details_cont{
+	display: grid;
+	grid-template-columns: auto auto;
+}
 .form_cont{
 	width: 540px;
 	height: 450px;
@@ -465,6 +478,7 @@ h1, h2, h3, h4, h5, h6{
 	background: linear-gradient(to left top, rgb(20, 56, 92, 0.4), #941dcc);
 	border-radius: 13px;
 }
+
 .form_group{
 	display: flex;
 	flex-direction: column;

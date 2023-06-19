@@ -3,6 +3,8 @@ import { Product } from './product';
 import { ProductService } from './product.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
+import { User } from './user';
+
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,23 @@ export class AppComponent implements OnInit{
 
   public products: Product[];
   public deleteProduct: Product;
+  public buyProduct: Product;
+  public productById: Product;
+
+  public users: User[];
+  public onAddUSer(addUser: NgForm): void{
+    this.productService.addProducts(addUser.value).subscribe(
+      (response: Product[]) => {
+        console.log(response);
+        this.getProducts();
+        this.onOpenModal( this.test, 'close');
+        addUser.reset();
+      }, 
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      } 
+    );
+  }
 
   constructor(private productService: ProductService){}
   
@@ -48,6 +67,7 @@ export class AppComponent implements OnInit{
     const updateedit = document.getElementById('updateProductForm');
     const close = document.getElementById('close');
     const all = document.getElementById('body');
+    const buydetails = document.getElementById('buydetails');
     button.type = 'button';
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
@@ -67,10 +87,20 @@ export class AppComponent implements OnInit{
       updateedit.style.opacity = '1';
       all.style.opacity = '0.2';
     }
-    if(mode === 'close' && cont && all){
+    if(mode === 'details' && buydetails && all){
+      button.setAttribute('data-target', '#detailsorbuy');
+      buydetails.style.visibility='visible';
+      buydetails.style.opacity= '1';
+      all.style.opacity = '0.2';
+    }
+    if(mode === 'close' && cont && all && updateedit && buydetails){
       close?.setAttribute('data-target','#close');
       cont.style.visibility = 'hidden';
+      updateedit.style.visibility = 'hidden';
+      buydetails.style.visibility = 'hidden';
       cont.style.opacity = '0';
+      updateedit.style.opacity = '0';
+      buydetails.style.opacity = '0';
       all.style.opacity = '1';
       all.style.transition = '1s';
     }
@@ -93,7 +123,6 @@ export class AppComponent implements OnInit{
     );
   }
   public updateProducts(product: NgForm): void{
-    
     this.productService.updateProducts(product.value, this.idElement).subscribe(
       (response: Product[]) => {
         console.log(response);
@@ -117,8 +146,7 @@ export class AppComponent implements OnInit{
     );
   }
 
-
-  public onBuyButton(product_id: number): void{
-
+  public onBuyProduct(product: Product): void{
+    this.buyProduct = product;
   }
 }

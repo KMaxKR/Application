@@ -7,7 +7,7 @@
         <nav class="nav">
           <a class="a__links" href="#page1">Products</a>
           <a class="a__links, modal-btn" href="#" id="AddProductModal" (click)="onOpenModal(test, 'add')">AddProduct</a> 
-          <a class="a__links" href="#">Login</a>
+          <a class="a__links" href="#">Contact</a>
         </nav>
       </div>
     </div>
@@ -38,7 +38,7 @@
                 <div class="button-wrapper"> 
                     <button id="edit"  class="btn outline" (click)="onOpenModal(product, 'edit')" (click)="getId(product.product_id)">Edit</button>
                     <button (click)="onDeleteProduct(product.product_id)" id="delete" class="btn outline">Delete</button>
-                    <button class="btn fill">{{product.product_price}}</button>
+                    <button (click)="onOpenModal(product, 'details')" (click)="onBuyProduct(product)" class="btn fill">{{product.product_price}}</button>
                 </div>
             </div>
         </div>
@@ -93,6 +93,50 @@
         <button (click)="updateProducts(updateForm)" class="savebtn" id="savebtn">Save changes</button>
       </form>
       <button style="cursor: pointer;" id="close" (click)="onOpenModal(test, 'close')">Close</button>
+    </div>
+    <!-----------------------------------------Buy------------------------------------------------------------>
+
+    <div class="details" *ngFor="let product of products" id="buydetails">
+      <div class="details_cont" #detailsorbuy>
+        <div class="detailsProduct">
+          <h1 class="form_h" style="text-align: center;">Add to card</h1>
+          <div class="form_group">
+            <label for="product_name">Product Name</label>
+            <label>{{buyProduct.product_name}}</label>
+          </div>
+          <div class="form_group">
+            <label for="product_specification">Product Name</label>
+            <label>{{buyProduct.product_specification}}</label>
+          </div>
+          <div class="form_group">
+            <label for="product_price">Product Name</label>
+            <label>{{buyProduct.product_price}}</label>
+          </div>
+        </div>
+        <div class="userInfo">
+          <form class="form_cont">
+            <h1 class="form_h" style="text-align: center;">User</h1>
+            <div class="form_group">
+              <label for="product_name">FirstName</label>
+              <input type="text" class="form_control" id="product_name" name="product_name" ngModel placeholder="FirstName" required>
+            </div>
+            <div class="form_group">
+              <label for="product_specification">LastName</label>
+              <input type="text" class="form_control" id="product_specification" name="product_specification" ngModel placeholder="LastName" required>
+            </div>
+            <div class="form_group">
+              <label for="product_price">Phone</label>
+              <input type="text" class="form_control" id="product_price" name="product_price" ngModel placeholder="Phone" required>
+            </div>
+            <div class="form_group">
+              <label for="product_quantity">E-mail</label>
+              <input type="text" class="form_control" id="product_quantity" name="product_quantity" ngModel placeholder="E-mail" required>
+            </div>
+          </form>
+          <button (click)="onOpenModal(test, 'close')" class="savebtn" id="savebtn">Buy</button>
+          <button (click)="onOpenModal(test, 'close')" class="savebtn" id="savebtn">Close</button>
+        </div>
+      </div>
     </div>
 
     <!---------------------------------------Footer--------------------------------------------------------->

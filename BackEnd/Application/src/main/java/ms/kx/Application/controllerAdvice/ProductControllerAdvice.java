@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+
 @ControllerAdvice
 public class ProductControllerAdvice extends ResponseEntityExceptionHandler {
-
     @ExceptionHandler(value = {ProductNameException.class})
     public ResponseEntity<Object> handlerProductNameException(RuntimeException e, WebRequest webRequest){
         String message = "Product Name Can Not Be Empty";
